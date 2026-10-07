@@ -1,0 +1,17 @@
+{
+  "config_hash": "aa5e78c665bb",
+  "rules_version": "0.1.0",
+  "rules_reviewed": false,
+  "eligible_rails": [
+    "CB",
+    "LR",
+    "SC"
+  ],
+  "empirical_sc": false,
+  "break_even_noise": 0.8,
+  "sensitivity": {
+    "min_tau": 0.5238095238095238,
+    "mean_tau": 0.8492063492063493,
+    "model_beats_greedy_share": 0.5
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "config_hash": "ee5a38d61dbf",
+  "rules_version": "0.1.0",
+  "rules_reviewed": false,
+  "default_scenario": "p2_excluded",
+  "source_kind": "synthetic",
+  "episodes": 382140
+}

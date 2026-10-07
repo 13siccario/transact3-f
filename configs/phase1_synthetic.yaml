@@ -1,0 +1,16 @@
+# One YAML per experiment; results are stored with this file's hash.
+name: phase1_synthetic
+seed: 20261005
+mode: synthetic            # synthetic | real  (real needs Phase 0 go decisions)
+period:
+  start: "2026-03-01"
+  end: "2026-08-31"        # must span the June 2026 episode (still a lead; see calendar)
+frequency: "1h"
+outputs:
+  raw_dir: data/raw
+  processed_dir: data/processed
+cleaning:
+  max_ffill_hours: 6       # longer gaps stay NaN and are flagged
+  outlier_window_hours: 72
+  outlier_mad_k: 8.0       # flag points further than k scaled MADs from a rolling median
+fx_pairs: ["USDINR", "EURUSD", "GBPUSD", "USDAED"]

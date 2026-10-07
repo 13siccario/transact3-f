@@ -1,0 +1,14 @@
+# Paper 1 experiments (simulated multi-rail routing). One config, one seed.
+name: paper1_sim
+seed: 20261005
+n_seeds: 8                  # independent worlds per policy; comparisons are paired by world
+n_episodes: 1500            # transfers per world
+cbdc: none                  # none | pilot | mature
+noisy_sigma: 0.3            # forecast noise used for the "noisy" ablation arm
+policies: [fixed_CB, fixed_LR, fixed_SC, greedy, forecast_model, linucb, ppo, oracle]
+ablation_kinds: [none, model, noisy, perfect]
+noise_sweep: [0.0, 0.1, 0.2, 0.4, 0.8, 1.6]
+liquidity_scales: [0.25, 0.5, 1.0, 2.0]
+sensitivity: {draws: 12, spread: 0.25, seeds: 3, episodes: 800, cbdc: [none, pilot, mature]}
+ppo: {timesteps: 300000}
+out_dir: paper1

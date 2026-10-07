@@ -1,0 +1,14 @@
+# Paper 2: historical replay of observed (currently synthetic) costs with compliant paths only.
+name: paper2_replay
+seed: 20261005
+data_dir: data/processed
+forecast_dir: data/processed/forecast
+costs_config: configs/costs.yaml
+deadlines_h: [6, 24, 72]
+latency_h: {P0: 24, P1: 1, P2: 2}      # nominal settlement times; PROVISIONAL
+late_penalty_bps: 50
+margin_bps: 3
+scenarios: [p2_excluded, p2_included_with_cost, p2_included]
+policies: [fixed_P0, fixed_P1, fixed_P2, greedy, forecast_aware, linucb, oracle]
+bootstrap: {block_h: 168, n: 1000}
+out_dir: paper2

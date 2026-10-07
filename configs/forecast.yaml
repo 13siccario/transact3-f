@@ -1,0 +1,22 @@
+name: phase3_forecast
+seed: 20261005
+data_dir: data/processed
+out_dir: data/processed/forecast
+pool_id: syn-usdc-usdt-1
+horizon: 1                    # hours ahead
+targets: [fx_return, fx_vol, fx_spread, gas_gwei, peg_dev, premium_pct, slip_bps]
+exog: [eth_ret]
+lags: [0, 1, 2, 3, 6, 12, 24, 48]
+windows: [6, 24, 72]
+initial_train_frac: 0.5
+test_block_hours: 168         # refit every week
+rolling_median_window: 24
+ar_order: 3
+models: [random_walk, rolling_median, ar, garch, lightgbm, lstm]   # garch only applies to fx_return / fx_vol
+# Level targets that drift out of the training range are forecast as change from the origin value
+# (y[t+h] - y[t]); trees and scaled networks cannot extrapolate levels.
+delta_targets: [fx_spread, gas_gwei, peg_dev, premium_pct, slip_bps]
+benchmark: random_walk
+z_model: lightgbm             # model whose out-of-sample forecasts become z(t) for the routers
+lightgbm: {n_estimators: 200, learning_rate: 0.05, num_leaves: 15, min_child_samples: 40, subsample: 0.8, subsample_freq: 1, colsample_bytree: 0.8}
+lstm: {seq_len: 24, hidden: 32, epochs: 10, batch_size: 128, lr: 0.003}

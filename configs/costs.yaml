@@ -1,0 +1,20 @@
+# Cost-engine parameters. EVERY value is provisional until calibrated from a primary source
+# (World Bank Remittance Prices Worldwide, RBI remittance survey, exchange fee schedules,
+# Income-tax Act). Do not cite these numbers in a paper.
+transfer_sizes_usd: [200, 1000, 10000]
+pool_id: syn-usdc-usdt-1        # swap-leg pool; a non-INR proxy unless an INR pool is confirmed
+gas_units: {approve_transfer: 65000, swap: 150000}   # provisional
+paths:
+  P0:                           # conventional (bank / money transfer operator)
+    ramp: {fixed_usd: 4.0, bps: 80}
+    fx_extra_bps: 120           # provider margin on top of market spread
+    reg_bps: 0
+  P1:                           # compliant stablecoin
+    ramp: {fixed_usd: 1.0, bps: 60}     # on-ramp + off-ramp combined
+    fx_extra_bps: 15
+    reg_bps: 0                          # PLACEHOLDER: set only from a verified primary source
+  P2:                           # onshore exchange
+    ramp: {fixed_usd: 0.0, bps: 25}     # exchange trading fee
+    fx_extra_bps: 5
+    reg_bps: 0                          # PLACEHOLDER: see events.yaml (tax leads)
+provenance: provisional

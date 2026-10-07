@@ -1,0 +1,42 @@
+# Hand-coded regulatory event calendar.
+#
+# Rules (PROJECT_PLAN s5): news and explainer sites are leads, not citations.
+# An event is only used in analysis when status == "verified" AND it has a
+# primary_source URL to the original document. Everything below starts as a lead.
+#
+# Fields: id, date (ISO, or null if unknown), end_date (optional), title,
+#         category (enforcement | tax | rbi_statement | other),
+#         status (lead | verified), primary_source (URL or null), note
+
+events:
+  - id: enforcement-2026-06
+    date: null
+    title: "June 2026 enforcement episode (named in the project plan)"
+    category: enforcement
+    status: lead
+    primary_source: null
+    note: "Dates, issuing authority and scope not yet traced to a primary document. Sample period must include it."
+
+  - id: vda-tax-2022-04
+    date: "2022-04-01"
+    title: "30% tax on gains from virtual digital assets"
+    category: tax
+    status: lead
+    primary_source: null
+    note: "From memory; verify against the Income-tax Act / Finance Act text before use."
+
+  - id: vda-tds-2022-07
+    date: "2022-07-01"
+    title: "1% TDS on virtual digital asset transfers"
+    category: tax
+    status: lead
+    primary_source: null
+    note: "From memory; verify against the Income-tax Act text before use."
+
+  - id: rbi-statements
+    date: null
+    title: "RBI statements on crypto / stablecoins (to be enumerated)"
+    category: rbi_statement
+    status: lead
+    primary_source: null
+    note: "Collect dated statements from rbi.org.in."

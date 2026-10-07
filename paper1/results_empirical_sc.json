@@ -1,0 +1,12 @@
+{
+  "config_hash": "aa5e78c665bb",
+  "rules_version": "0.1.0",
+  "rules_reviewed": false,
+  "eligible_rails": [
+    "CB",
+    "LR",
+    "SC"
+  ],
+  "empirical_sc": true,
+  "break_even_noise": null
+}

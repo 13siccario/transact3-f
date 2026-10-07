@@ -1,0 +1,26 @@
+# Versioned eligibility rules. The compliance filter reads this file and removes ineligible
+# actions BEFORE any policy acts. No model can override it (PROJECT_PLAN design rule 1).
+#
+# This file must be reviewed by a person. Until `reviewed_by` is set, runs on real data are refused.
+# The scenarios below are research assumptions for sensitivity analysis, not legal conclusions.
+version: "0.1.0"
+reviewed_by: null
+reviewed_on: null
+
+# Paper 2 replay: observed payment paths.
+default_scenario: p2_excluded       # conservative default
+scenarios:
+  p2_excluded:                      # onshore exchange path treated as unavailable
+    eligible_paths: [P0, P1]
+    extra_cost_bps: {}
+  p2_included_with_cost:            # available, with an extra compliance cost (provisional)
+    eligible_paths: [P0, P1, P2]
+    extra_cost_bps: {P2: 25}
+  p2_included:                      # available at the measured cost
+    eligible_paths: [P0, P1, P2]
+    extra_cost_bps: {}
+
+# Paper 1 simulator: rails. CBDC bridge exists only inside CBDC scenarios.
+sim_rails:
+  always: [CB, LR, SC]
+  cbdc_scenarios: [pilot, mature]
