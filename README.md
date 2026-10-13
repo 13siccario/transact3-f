@@ -13,6 +13,17 @@ make api          # FastAPI on :8000
 make web          # Next.js dashboard on :3000 (run `npm install` in web/ first)
 ```
 
+## Run the app
+
+The dashboard needs both servers, each in its own terminal, from the repo root:
+
+```
+make setup                 # once
+(cd web && npm install)    # once
+make api                   # backend: http://127.0.0.1:8000 (API docs at /docs)
+make web                   # frontend: http://localhost:3000
+```
+
 **Synthetic data:** until Phase 0 confirms real sources, all datasets are generated (`source_kind=synthetic`, seeded by the config). They exercise the pipeline and UI only and must not be used for paper results.
 
 Layout: `src/transact3/{data,costs,forecast,sim,routing,eval}`, `configs/` (one YAML per experiment), `docs/`, `api/`, `web/`, `paper1/`, `paper2/`.
