@@ -29,7 +29,14 @@ def ablation_table(runs: dict[str, pd.DataFrame], baseline: str = "none") -> pd.
     return pd.DataFrame(rows)
 
 
-def break_even_noise(sweep: pd.DataFrame, baseline_cost: pd.DataFrame) -> float | None:
-    """Largest tested noise level at which noisy foresight is still significantly cheaper than greedy."""
-    ok = sweep[(sweep["vs_greedy_hi"] < 0)]
-    return float(ok["sigma"].max()) if len(ok) else None
+def break_even_noise(sweep: pd.DataFrame, baseline_cost: pd.DataFrame = None) -> float | None:
+    """Largest noise level up to which noisy foresight is significantly cheaper than greedy at EVERY
+    smaller level too. Stops at the first level where the gain is no longer significant, so a lucky
+    isolated result at higher noise cannot move it."""
+    best = None
+    for _, r in sweep.sort_values("sigma").iterrows():
+        if r["vs_greedy_hi"] < 0:
+            best = float(r["sigma"])
+        else:
+            break
+    return best

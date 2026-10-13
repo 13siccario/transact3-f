@@ -10,6 +10,6 @@
 | Manuscripts formatted to the target journals' guidelines | Blocked | Target journals not chosen |
 | Fixed seeds, one config per experiment, config hash saved with results | Done | |
 | `make reproduce` regenerates every table and figure | Done | Takes about 40 minutes |
-| Unit tests for the cost engine and compliance filter | Done | |
+| Unit tests for the cost engine and compliance filter | Done | 62 tests; browser checks scripted outside the repo |
 | Pinned dependencies and a Dockerfile or lock file | Done | `requirements.lock`, `Dockerfile` (written but not yet built or run) |
 | Licence and data-terms review | Not started | See `docs/data_terms_review.md` |

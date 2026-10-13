@@ -8,7 +8,7 @@
     "SC"
   ],
   "empirical_sc": false,
-  "break_even_noise": 0.8,
+  "break_even_noise": 0.2,
   "sensitivity": {
     "min_tau": 0.5238095238095238,
     "mean_tau": 0.8492063492063493,

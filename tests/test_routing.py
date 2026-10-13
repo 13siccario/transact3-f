@@ -46,3 +46,11 @@ def test_linucb_learns_to_beat_a_bad_fixed_rail():
     lin = summarise(run_policy(e, LinUCB(), 1500, seed=2)).total_bps.iloc[0]
     cb = summarise(run_policy(env(), Fixed("CB"), 1500, seed=2)).total_bps.iloc[0]
     assert lin < cb
+
+
+def test_break_even_noise_ignores_isolated_wins_at_high_noise():
+    import pandas as pd
+    from transact3.eval.ablations import break_even_noise
+    sweep = pd.DataFrame({"sigma": [0.0, 0.1, 0.2, 0.4, 0.8], "vs_greedy_hi": [-5, -3, -0.3, 2.9, -0.8]})
+    assert break_even_noise(sweep) == 0.2
+    assert break_even_noise(sweep.assign(vs_greedy_hi=1.0)) is None

@@ -47,3 +47,11 @@ Non-goals: live trading, legal or investment advice, any tool that helps route a
 - Forecasts are clipped to physical values (no negative fees); a negative predicted gas fee had produced a negative cost and NaN inputs to PPO.
 - With scarce liquidity, a per-transfer planner, even with perfect foresight, can lose to sending now. With abundant liquidity the oracle beats sending now by about 12 bps in the empirical stablecoin world. Mechanism is a hypothesis, not tested.
 - PPO needed far more training than first assumed (30k steps was 18 bps behind LinUCB; 300k steps is about 3 bps behind). Do not report E3 from an under-trained agent.
+
+## Final results snapshot (synthetic data, placeholder parameters; not findings)
+- Simulator, baseline liquidity: perfect hindsight is 7.3 bps cheaper than sending now (95% CI 5.3 to 9.3). The model forecast is 1.6 bps cheaper but not distinguishable from zero. LinUCB and PPO are not cheaper than sending now.
+- E4: noisy foresight helps significantly only up to noise 0.2 (break-even), measured as the first level where the gain disappears.
+- E3: PPO versus LinUCB flips with liquidity. PPO is far worse when buffers are tight (37 to 48 bps at 0.25x and 0.5x), level at baseline, and 9.7 bps better when buffers are abundant (2x). This is the reverse of the expected pattern; mechanism untested.
+- E5: across 12 parameter draws the model forecast beats sending now in about half; mean rank correlation with the baseline ranking 0.85, minimum 0.52. Conclusions about forecasts are sensitive to parameters.
+- Empirical stablecoin cost process (Paper 1 robustness): no noise level at which forecasts significantly help under the default (scarce) liquidity.
+- Replay (Paper 2): forecast-aware is within about 1 bp of sending now on every size and deadline; perfect hindsight is 10 to 20 bps cheaper.
